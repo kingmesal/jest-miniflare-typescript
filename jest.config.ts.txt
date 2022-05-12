@@ -1,0 +1,38 @@
+import type { Config } from '@jest/types';
+
+const config: Config.InitialOptions = {
+    verbose: true,
+
+    preset: "ts-jest/presets/default-esm",
+    testEnvironment: "miniflare",
+    testEnvironmentOptions: {
+      // See https://miniflare.dev/get-started/api#reference for API reference
+      // and the rest of the docs for more detailed information
+      kvNamespaces: ["MYSTORE"],
+    },
+
+    globals: {
+        "ts-jest": {
+            tsconfig: "test/tsconfig.json",
+            useESM: true,
+        }
+    },
+
+    /**
+     * THIS IS A FIX FOR:
+     * {export { default as v1 } from './v1.js';
+     *  ^^^^^^
+     * SyntaxError: Unexpected token 'export'
+     *
+     * When the code is imported correctly and you just can't figure out the issue...
+     * it isn't your fault.
+     *
+     * This forces the use of a commonjs package, because somehow that is
+     * what we are getting.
+     */
+    moduleNameMapper: {
+        uuid: ["<rootDir>/node_modules/uuid/dist/index.js"],
+    },
+
+};
+export default config;

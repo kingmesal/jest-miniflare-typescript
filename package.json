@@ -1,0 +1,25 @@
+{
+  "name": "jest-test",
+  "author": "",
+  "version": "1.0.0",
+  "description": "a place to test configs for jest",
+  "type": "module",
+  "scripts": {
+    "build": "tsc --build",
+    "test": "npm run build && node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^3.10.0",
+    "@types/jest": "^27.5.0",
+    "@types/uuid": "^8.3.4",
+    "jest": "^27.5.1",
+    "jest-environment-miniflare": "^2.4.0",
+    "miniflare": "^2.4.0",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "uuid": "^8.3.2"
+  }
+}
